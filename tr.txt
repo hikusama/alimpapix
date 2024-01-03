@@ -1,0 +1,103 @@
+    <div class="container">
+        <?php if (isset($error_message)) : ?>
+            <p class="error"><?php echo $error_message; ?></p>
+        <?php endif; ?>
+        <form method="post" action="">
+            <label for="username">Username:</label>
+            <input type="text" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="register.php">Register here</a>.</p>
+    </div>
+
+
+
+
+
+        <div class="container">
+
+        <?php if ($user_role === 'Admin') : ?>
+            <p>ADMIN</p>
+            <a href="admin_home.php">Admin Home</a>
+        <?php else : ?>
+
+            <p>REGULAR</p>
+            <!-- Search bar -->
+            <h2>Books</h2>
+            <form method="get" action="view_book.php">
+                <label for="book_name">Search Book:</label>
+                <input type="text" name="search" required>
+                <button type="submit">Search</button>
+            </form>
+
+            <br>
+
+            <!-- Display list of books -->
+            <?php include('view_books.php'); ?>
+        <?php endif; ?>
+
+        <br>
+        
+        <a href="logout.php">Logout</a>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Admin=====================
+        <div class="container">
+        <h2>Welcome, <?php echo $username; ?>!</h2>
+
+        <p>ADMIN</p>
+
+        <h2>Books</h2>
+        <!-- Search bar -->
+        <form method="get" action="view_book.php">
+            <label for="book_name">Search Book:</label>
+            <input type="text" name="search" required>
+            <button type="submit">Search</button>
+        </form>
+
+        <br>
+
+        <!-- Display list of books -->
+        <?php //include('view_books.php'); 
+        ?>
+
+        <br>
+
+        <!-- Display user table -->
+        <h2>Users</h2>
+        <?php //include('user_table.php'); 
+        ?>
+
+        <br>
+
+        <!-- Display borrowed books table -->
+        <h2>Borrowed Books</h2>
+        <?php //include('borrowed_table.php'); 
+        ?>
+
+        <br>
+
+
+
+
+
+
+
+                    <img id="pictur" src="data:<?php echo $imageType; ?>;base64,<?php echo base64_encode($imageData); ?>" alt="Image <?php echo $imageId; ?>">
